@@ -80,21 +80,25 @@ def inference_benchmark(model_path: str, img_path: str, data_type: str, save_out
             
             # Save output
             if save_output_path:
-                out.write(results.render())
+                out.write(results[0].plot())
             cnt += 1
             total_time += end_time - start_time
         
         print(f"Average inference time: {total_time / cnt} seconds")
         print(f"FPS: {round(1 / (total_time / cnt), 2)}")
         vid.release()
-        if save_output_path:
-            out.release()
+        # if save_output_path:
+        #     for i in range(len(results)):
+        #         out.write(results[i].plot())
+        #     out.release()
 
 
 if __name__ == "__main__":
-    model_path = "weight/yolov8s-world.pt"
+    model_path = "/weight/yolov8s-world-person.pt"
     img_path = "/sample_data/bat.png"
+    mv_path = "/sample_data/person_fp30.mp4"
     save_output_path = "/output/sampleout_bat.png"
+    output_video_file = "/output/test_tanoue.mp4"
     # img_path = "/sample_data/person_fp30.mp4"
     # save_output_path = "/output/sampleout_video.mp4"
-    inference_benchmark(model_path, img_path, "image", save_output_path, "cuda")
+    inference_benchmark(model_path, mv_path, "video", output_video_file, "cuda")

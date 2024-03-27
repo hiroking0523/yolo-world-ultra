@@ -5,9 +5,8 @@ xhost +
 sudo docker run --gpus all -it --rm \
   --runtime nvidia \
   --shm-size=1g \
-  -v $(pwd):/workspace \
-  -v /tmp/.X11-unix:/tmp/.X11-unix \
   -v ~/workspase/yolo-world-ultra/test.py:/usr/src/ultralytics/test.py \
+  -v ~/workspase/yolo-world-ultra/test_nishi.py:/usr/src/ultralytics/test_nishi.py \
   -v ~/workspase/yolo-world-ultra/weight:/weight \
   -v ~/workspase/yolo-world-ultra/sample_data:/sample_data \
   -v ~/workspase/yolo-world-ultra/output:/output \
